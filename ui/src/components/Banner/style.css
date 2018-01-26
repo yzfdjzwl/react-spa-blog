@@ -1,0 +1,30 @@
+.banner-container {
+  height: 430px;
+  background: #808080;
+  color: #fff; 
+}
+
+.banner-inner {
+  padding: 150px 0;
+  text-align: center;
+}
+
+.banner-inner h1 {
+  font-size: 65px;
+  margin-bottom: 10px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.banner-inner h2 {
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.banner-middle {
+  width: 100px;
+  height: 3px;
+  background: #fff;
+  margin: 15px auto;
+  border-width: 4px;
+}

@@ -1,3 +1,5 @@
+import 'normalize.css';
+import './common/global.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createRoutes } from './routes';

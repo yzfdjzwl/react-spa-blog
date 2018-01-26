@@ -17,6 +17,10 @@
 * [模块热替换](#模块热替换)
 * [redux、react-redux以及中间件](#reduxreact-redux以及中间件)
 * [使用source map](#使用source-map)
+* [loader](#loader)
+  * [加载CSS](#加载css)
+  * [加载图片](#加载图片)
+* [其他](#其他)
 
 <!-- vim-markdown-toc -->
 
@@ -53,7 +57,7 @@
 │   ├── index.js                    // 入口
 │   ├── reducers.js                 // 所有的reducer
 │   └── routes.js                   // 所有的路由
-├── temp                            // 临时的文件
+├── examples                        // 临时的文件
 │   ├── index.js
 │   └── routes.js
 └── webpack
@@ -139,7 +143,7 @@
 	* 新建2个页面组件, `cd src/containers && mkdir Counter TodoList`
   * 然后创建`src/routes.js`并添加一个函数。
   * 然后在`index.js`进行配置。
-  * 代码请看`temp/index.js`与`temp/routes.js`
+  * 代码请看`examples/index.js`与`examples/routes.js`
 
 ## webpack-dev-server
 
@@ -393,3 +397,40 @@ module.exports = {
   devtool: 'inline-source-map',
 };
 ```
+
+## loader
+
+### 加载CSS
+
+* 安装：`npm install --save-dev style-loader css-loader`
+* 在`webpack.config.js.module`里面添加代码:
+```javascript
+rules: [
+  {
+    test: /\.css$/,
+    use: [
+      'style-loader',
+      'css-loader',
+    ],
+  }
+]
+```
+
+### 加载图片
+
+* 安装: `npm install --save-dev file-loader`
+* 在`webpack.config.js.module`里面添加代码:
+```javascript
+rules: [
+  {
+    test: /\.(png|jpg|svg|jpeg|gif)$/,
+    use: [
+      'file-loader',
+    ]
+  },
+]
+```
+
+## 其他
+
+* 如何初始化css，使用[normalize.css](https://github.com/necolas/normalize.css)， 在入口文件`index.js`里面直接`import 'normalize.css'`。

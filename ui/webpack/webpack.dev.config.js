@@ -12,12 +12,26 @@ module.exports = {
   devtool: 'inline-source-map',
   resolve: {
     alias: {
+      '@common': path.resolve(__dirname, relativeRootPath, 'src/common'),
       '@containers': path.resolve(__dirname, relativeRootPath, 'src/containers'),
       '@components': path.resolve(__dirname, relativeRootPath, 'src/components'),
     }
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        use: [
+          'file-loader',
+        ],
+      },
       {
         test: /\.js$/,
         // cacheDirectory是用来缓存编译结果，下次编译加速
