@@ -20,6 +20,8 @@
 * [loader](#loader)
   * [加载CSS](#加载css)
   * [加载图片](#加载图片)
+* [Ajax](#ajax)
+  * [代理与跨域](#代理与跨域)
 * [其他](#其他)
 
 <!-- vim-markdown-toc -->
@@ -429,6 +431,25 @@ rules: [
     ]
   },
 ]
+```
+
+## Ajax
+
+* 使用[开源库axios](https://github.com/axios/axios)
+* 安装`npm install axios --save`
+
+### 代理与跨域
+
+* 跨域访问，使用CORS，服务器端配置即可。
+* 代理, 配置webpack, 在`devServer`中添加`proxy`即可。
+```javascript
+proxy: {
+  '/api': {
+    target: 'http://localhost:3000',
+    // pathRewrite: {'^/api' : 'node/api'},
+    changeOrigin: true,
+  }
+},
 ```
 
 ## 其他

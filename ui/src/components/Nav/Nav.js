@@ -9,10 +9,11 @@ class Nav extends Component {
         <div className="nav-left"><a href="/">动机在未来</a></div>
         <div className="nav-right">
           <ul className="clearfix">
-            <li><a href="#">首页</a></li>
-            <li><a href="#">关于我</a></li>
-            <li><a href="#">归档</a></li>
-            <li><a href="#">哈哈</a></li>
+            <li><Link to="/">首页</Link></li>
+            <li><Link to="/classification">分类</Link></li>
+            <li><Link to="/archive">归档</Link></li>
+            <li><Link to="/myprojects">我的项目</Link></li>
+            <li><Link to="/about">关于我</Link></li>
           </ul>
         </div>
       </div>

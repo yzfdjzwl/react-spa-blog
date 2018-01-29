@@ -1,8 +1,6 @@
-import counter from '@containers/Counter/reducer';
-import todolist from '@containers/TodoList/reducer';
+import home from '@containers/Home/reducer';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
-  counter,
-  todolist,
+  home,
 });

@@ -1,0 +1,19 @@
+.go-top {
+  position: fixed;
+  bottom: 30px;
+  margin-left: 1140px;
+}
+
+.go-top a {
+  width: 54px;
+  height: 54px;
+  display: block;
+  background: #ddd url(images/go-top.png) no-repeat center center;
+  background-color: #aaa;
+  border-radius: 7px;
+  transition: 1s;
+}
+
+.go-top a:hover {
+  cursor: pointer;
+}

@@ -1,6 +1,8 @@
-import Counter from '@containers/Counter/Counter';
-import TodoList from '@containers/TodoList/TodoList';
 import Home from '@containers/Home/Home';
+import Classification from '@containers/Classification/Classification';
+import Archive from '@containers/Archive/Archive';
+import MyProjects from '@containers/MyProjects/MyProjects';
+import About from '@containers/About/About';
 
 export const createRoutes = () => [
   {
@@ -9,13 +11,23 @@ export const createRoutes = () => [
     exact: true,
   },
   {
-    path: '/todolist',
-    component: TodoList,
+    path: '/classification',
+    component: Classification,
     exact: true,
   },
   {
-    path: '/counter',
-    component: Counter,
+    path: '/archive',
+    component: Archive,
+    exact: true,
+  },
+  {
+    path: '/myprojects',
+    component: MyProjects,
+    exact: true,
+  },
+  {
+    path: '/about',
+    component: About,
     exact: true,
   },
 ];

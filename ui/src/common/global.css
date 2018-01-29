@@ -16,3 +16,8 @@ h1, h2, h3 {
   margin: 0;
   padding: 0;
 }
+
+.content-wraper {
+  width: 750px;
+  margin: 0 auto;
+}

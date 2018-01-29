@@ -51,5 +51,12 @@ module.exports = {
     historyApiFallback: true,
     // 如果你希望服务器外部可以访问，指定如下：host: "0.0.0.0"。比如你用手机通过IP访问。
     host: '0.0.0.0',
+		proxy: {
+			'/api': {
+				target: 'http://localhost:3000',
+				// pathRewrite: {'^/api' : 'node/api'},
+				changeOrigin: true,
+			}
+		},
   },
 };
