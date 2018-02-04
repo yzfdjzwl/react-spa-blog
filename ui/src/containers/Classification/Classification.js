@@ -4,6 +4,9 @@ import util from '@common/util';
 import Banner from '@components/Banner/Banner';
 
 class Classification extends Component {
+  componentWillMount() {
+  }
+
   render() {
     const info = util.getBannerInfoByPath('classification');
     return (

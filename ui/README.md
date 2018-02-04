@@ -20,6 +20,7 @@
 * [loader](#loader)
   * [加载CSS](#加载css)
   * [加载图片](#加载图片)
+* [Plugins](#plugins)
 * [Ajax](#ajax)
   * [代理与跨域](#代理与跨域)
 * [其他](#其他)
@@ -432,6 +433,10 @@ rules: [
   },
 ]
 ```
+
+## Plugins
+
+// TODO
 
 ## Ajax
 

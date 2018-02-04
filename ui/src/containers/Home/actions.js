@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const fetchPostList = () => dispatch => {
   axios
-  .get('/api/post/list')
+  .post('/api/post/pager', { limit: 10 })
   .then(res => {
     dispatch({
       type: at.FETCH_POSTS_SUCCESS,

@@ -1,5 +1,7 @@
 ## A Simple React Blog
 
+一个个人博客，非博客系统。
+
 * [后端](server)
 * [前端](ui)
 

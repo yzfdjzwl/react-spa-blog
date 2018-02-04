@@ -19,9 +19,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentWillMount() {
     this.props.homeActions.fetchPostList();
   }
+
   render() {
     const info = util.getBannerInfoByPath('home');
     const { postList, isFetching } = this.props.home.posts;
