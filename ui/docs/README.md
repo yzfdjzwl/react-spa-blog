@@ -9,3 +9,14 @@
 * 因此，一般有两种写法，手动bind以及箭头函数。
 * 可以看[react-es6-autobinding-and-createclass/](https://blog.andrewray.me/react-es6-autobinding-and-createclass/)。
 
+## TODO
+
+* 踩坑: http://www.cnblogs.com/lijie33402/p/6421331.html
+    * 解决的两种办法
+* react只有当state更新后，要地址发生变化
+
+
+看不到你处理TOGGLE_TOPNAV的reducer是怎么写的，我猜测应该是因为你直接对state进行了修改，state是引用，store内部的state同样也就变了，这样导致React-Redux认为dispatch前后state没有改变，就不会重新渲染UI，实际state已经改变。
+当处理TOGGLE_TOPNAV的时候触发了state变动，所有的数据被渲染，所以UI就变化了。
+
+解决办法不要直接修改state 不要直接修改state 不要直接修改state

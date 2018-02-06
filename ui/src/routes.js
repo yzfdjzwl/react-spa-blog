@@ -11,6 +11,10 @@ export const createRoutes = () => [
     exact: true,
   },
   {
+    path: '/list',
+    component: Home,
+  },
+  {
     path: '/classification',
     component: Classification,
     exact: true,

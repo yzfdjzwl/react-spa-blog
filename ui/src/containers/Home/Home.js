@@ -4,10 +4,10 @@ import Nav from '@components/Nav/Nav';
 import Footer from '@components/Footer/Footer';
 import Loading from '@components/Loading/Loading';
 import GoTop from '@components/GoTop/GoTop';
+import Pagination from '@components/Pagination/Pagination';
 import { Link } from 'react-router-dom';
 import util from '@common/util';
 import PostItem from './components/PostItem/PostItem';
-import ButtonGroup from './components/ButtonGroup/ButtonGroup';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as HomeActions from './actions';
@@ -21,15 +21,31 @@ const mapDispatchToProps = dispatch => ({
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.handlePageChange = this.handlePageChange.bind(this);
   }
 
   componentWillMount() {
-    this.props.homeActions.fetchPostList();
+    const { pagination } = this.props.home.posts;
+    const { pageSize, current } = pagination;
+
+    this.props.homeActions.fetchPostList({
+      current,
+      pageSize,
+    });
+  }
+
+  handlePageChange(current) {
+    const { pagination } = this.props.home.posts;
+    const { pageSize } = pagination;
+
+    this.props.homeActions.fetchPostList({ current, pageSize });
   }
 
   render() {
     const info = util.getBannerInfoByPath('home');
-    const { postList, isFetching } = this.props.home.posts;
+    const { posts } = this.props.home;
+    const { postList, isFetching, pagination } = posts;
+    const { total, pageSize, groups, theme, current } = pagination;
     return (
       <div className="home">
         <Nav />
@@ -41,7 +57,16 @@ class Home extends Component {
               <PostItem key={Math.random()} post={post} />
             )
           }
-          <ButtonGroup />
+          <Pagination
+            pagination={{
+              total,
+              pageSize,
+              groups,
+              theme,
+              current,
+            }}
+            onChange={this.handlePageChange}
+          />
         </div>
         <hr className="home-bottom-line" />
 				<GoTop />

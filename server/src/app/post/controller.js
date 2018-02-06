@@ -6,10 +6,10 @@ const {
 
 // [POST] /api/post/pager
 const getAllPostsByPager = async (request, reply) => {
+  const params = request.body;
+  const { current, pageSize } = params;
 
-  console.log(request.body);
-
-  let data = await PostModel.find({}, null, { limit: 10 });
+  let data = await PostModel.find({}, null, { limit: pageSize, skip: (current - 1) * pageSize });
 
   data = markdownToPlainText(data);
   data = postIntercept(data);

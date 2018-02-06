@@ -3,7 +3,7 @@ import './style.css';
 
 class PostItem extends Component {
   componentWillMount() {
-    console.log(this.props.content);
+    // console.log(this.props.content);
   }
   render() {
     const { post } = this.props;
