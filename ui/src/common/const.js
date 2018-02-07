@@ -37,4 +37,31 @@ export default {
       bgImage: about,
     },
   ],
+  POST_BANNER_INFO: [
+    {
+      title: '0',
+      subTitle: '动机在未来',
+      bgImage: home,
+    },
+    {
+      title: '0',
+      subTitle: '动机在未来',
+      bgImage: classification,
+    },
+    {
+      title: '0',
+      subTitle: '动机在未来',
+      bgImage: archive,
+    },
+    {
+      title: '0',
+      subTitle: '动机在未来',
+      bgImage: projects,
+    },
+    {
+      title: '0',
+      subTitle: '动机在未来',
+      bgImage: about,
+    },
+  ],
 };

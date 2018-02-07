@@ -25,12 +25,25 @@ class Home extends Component {
   }
 
   componentWillMount() {
+    const { match } = this.props;
+    const { url }= match;
     const { pagination } = this.props.home.posts;
     const { pageSize, current } = pagination;
+
+    if (/^\/post\/list\/\d$/gi.test(url)) {
+      let pageNumber = parseInt(util.getUrlLastSegment(url));
+      this.props.homeActions.fetchPostList({
+        current: pageNumber,
+        pageSize
+      });
+      return;
+    }
 
     this.props.homeActions.fetchPostList({
       current,
       pageSize,
+    }, () => {
+      window.scroll(0, 0);
     });
   }
 
@@ -38,11 +51,14 @@ class Home extends Component {
     const { pagination } = this.props.home.posts;
     const { pageSize } = pagination;
 
-    this.props.homeActions.fetchPostList({ current, pageSize });
+    this.props.homeActions.fetchPostList({ current, pageSize }, () => {
+      window.scroll(0, 0);
+    });
   }
 
   render() {
     const info = util.getBannerInfoByPath('home');
+    const { history } = this.props;
     const { posts } = this.props.home;
     const { postList, isFetching, pagination } = posts;
     const { total, pageSize, groups, theme, current } = pagination;
@@ -54,7 +70,7 @@ class Home extends Component {
           {isFetching ?
             <Loading /> :
             postList.map(post =>
-              <PostItem key={Math.random()} post={post} />
+              <PostItem key={Math.random()} post={post} history={history} />
             )
           }
           <Pagination
@@ -64,6 +80,7 @@ class Home extends Component {
               groups,
               theme,
               current,
+              pathname: '/post/list',
             }}
             onChange={this.handlePageChange}
           />

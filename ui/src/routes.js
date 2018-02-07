@@ -3,6 +3,7 @@ import Classification from '@containers/Classification/Classification';
 import Archive from '@containers/Archive/Archive';
 import MyProjects from '@containers/MyProjects/MyProjects';
 import About from '@containers/About/About';
+import Post from '@containers/Post/Post';
 
 export const createRoutes = () => [
   {
@@ -11,8 +12,12 @@ export const createRoutes = () => [
     exact: true,
   },
   {
-    path: '/list',
+    path: '/post/list/:current',
     component: Home,
+  },
+  {
+    path: '/post/detail/:id',
+    component: Post,
   },
   {
     path: '/classification',

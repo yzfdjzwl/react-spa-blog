@@ -18,12 +18,12 @@
  *
  */
 
+const firstline = require('firstline');
 const fs = require('fs');
 const path = require('path');
 const staticDir =  `${__dirname}/blog/`;
 let obj = {};
 let counter = 0;
-
 
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/blog';
@@ -40,33 +40,38 @@ const readAllFiles = (callback) => {
     }
     for (let i = 0; i < dirs.length; i++) {
       (function(i) {
-        console.log(i);
         const pathname = `${staticDir}${dirs[i]}/`;
         fs.readdir(pathname, (error, files) => {
           let fileCounter = files.length;
           for (let j = 0; j < files.length; j++) {
             (function(j) {
-              // 当前博文
               const file = `${pathname}${files[j]}`;
               var stat = fs.lstatSync(file);
               if (stat.isDirectory()) {
                 fileCounter = fileCounter - 1;
               }
               if (stat.isFile()) {
+
                 fs.readFile(file, 'utf8', (error, content) => {
-                  fileCounter = fileCounter - 1;
-                  obj[dirs[i]].push({
-                    // 去除md后缀
-                    title: files[j].split('.')[0],
-                    content,
+                  firstline(file).then(firstLine => {
+                    // 读取文件第一行
+                    const title = firstLine.split(' ')[1];
+                    fileCounter = fileCounter - 1;
+
+                    obj[dirs[i]].push({
+                      // 去除md后缀
+                      url: files[j].split('.')[0],
+                      content,
+                      title,
+                    });
+                    if (fileCounter === 0) {
+                      dirCounter = dirCounter - 1;
+                    }
+                    if (fileCounter === 0 && dirCounter === 0) {
+                      // 跳出循环
+                      callback && callback(obj);
+                    }
                   });
-                  if (fileCounter === 0) {
-                    dirCounter = dirCounter - 1;
-                  }
-                  if (fileCounter === 0 && dirCounter === 0) {
-                    // 跳出循环
-                    callback && callback(obj);
-                  }
                 });
               }
             })(j);

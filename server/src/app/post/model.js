@@ -6,6 +6,7 @@ const postSchema = new Schema({
   content: String,
   date: { type: Date, deafult: Date.now },
   sort: String,
+  url: String,
 });
 
 

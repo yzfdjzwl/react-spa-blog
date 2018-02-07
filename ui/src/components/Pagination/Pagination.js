@@ -41,7 +41,7 @@ class Pagination extends Component {
       pageSize = 1,
       current = 1,
       groups = 5,
-      theme = 'red',
+      theme = '#009688',
     } = pagination;
 
     const pages = Math.floor(total / pageSize);
@@ -53,6 +53,7 @@ class Pagination extends Component {
       groups,
       index,
       pages,
+			theme,
     };
     if (firstRender) {
       this.state = state;
@@ -70,15 +71,49 @@ class Pagination extends Component {
   }
 
   prev() {
-    return <Link to="">上一页</Link>;
+    const { current, pages } = this.state;
+    const { pathname } = this.props.pagination;
+	  if (current === 1) {
+      return (
+				<a 
+					href="javascript:;"
+					className="p-item-disabled p-item"
+				>上一页</a>
+			);
+    }
+    return (
+      <Link
+        to={{ pathname: `${pathname}/${current - 1}` }}
+        onClick={() => this.handleChange(current - 1)}
+				className="p-item"
+      >上一页</Link>
+    );
+
   }
 
   next() {
-    return `<a>下一页</a>`
+    const { current, pages } = this.state;
+    const { pathname } = this.props.pagination;
+    if (current === pages) {
+			return (
+				<a 
+					href="javascript:;"
+					className="p-item-disabled p-item p-next"
+				>下一页</a>
+			);
+    }
+    return (
+      <Link
+        to={{ pathname: `${pathname}/${current + 1}` }}
+        onClick={() => this.handleChange(current + 1)}
+				className="p-item p-next"
+      >下一页</Link>
+    );
   }
 
   page() {
-    const { total, pageSize, current, index, groups, pages } = this.state;
+    const { total, pageSize, current, index, groups, pages, theme } = this.state;
+    const { pathname } = this.props.pagination;
     const pager = [];
 
     // 数据量为0的时候
@@ -88,7 +123,13 @@ class Pagination extends Component {
 
     // 首页
     if (index > 1) {
-      pager.push(<a key={1} onClick={() => this.handleChange(1)}>1</a>);
+      pager.push(
+				<Link
+					 to={{ pathname: `${pathname}/1`}}
+					 onClick={() => this.handleChange(1)}
+					className="p-item"
+				>1</Link>
+				);
     }
 
     // 计算当前页码组的起始页
@@ -106,33 +147,56 @@ class Pagination extends Component {
 
     // 输出左分割符
     if (start > 2) {
-      pager.push(<span>...</span>);
+      pager.push(<span className="p-item">...</span>);
     }
 
     // 输出连续页码
     for(; start <= end; start++) {
       if (start === current) {
-        pager.push(<span style={{ color: 'red' }}>{ current }</span>);
+        pager.push(
+					<span
+						className="p-item"
+						style={{ backgroundColor: theme, color: '#fff' }}
+					>{ current }</span>
+				);
       } else {
-        pager.push(<Link to={{ pathname:'/list', search:`?page=${start}` }} key={start} onClick={(start => {
-          return () => this.handleChange(start)
-        })(start)}>{ start }</Link>);
+        pager.push(
+					<Link
+				 		to={{ pathname:`${pathname}/${start}` }}
+						onClick={(start => {
+ 		          return () => this.handleChange(start)
+        		})(start)}
+						className="p-item"
+					>{ start }</Link>
+				);
       }
     }
 
     // 输出右分隔符 & 末页
     if (pages > groups && pages > end) {
       if (end + 1 < pages) {
-        pager.push(<span>...</span>);
+        pager.push(
+					<span
+						className="p-item"
+					>...</span>
+				);
       }
       if (groups !== 0) {
-        pager.push(<a key={pages} onClick={() => this.handleChange(pages)}>{ pages }</a>);
+        pager.push(
+					<Link
+					  to={{ pathname: `${pathname}/${pages}` }}
+						onClick={() => this.handleChange(pages)}
+						className="p-item"
+					>{ pages }</Link>
+				);
       }
     }
 
     return (
-      <div>
-        {pager.map(x => x)}
+      <div className="p-middle">
+        {pager.map(x =>
+          <span key={Math.random()}>{x}</span>
+        )}
       </div>
     );
   }
@@ -140,10 +204,12 @@ class Pagination extends Component {
   render() {
     const that =this;
     return (
-      <div>
-        {this.prev()}
-        {this.page()}
-        <div dangerouslySetInnerHTML={{ __html: that.next() }} />
+      <div className="pagination-wrapper">
+        <div className="pagination-inner">
+          {this.prev()}
+          {this.page()}
+          {this.next()}
+        </div>
       </div>
     );
   }

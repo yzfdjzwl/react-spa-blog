@@ -10,7 +10,7 @@ const INIT_STATE = {
       total: 1,
       pageSize: 10,
       groups: 5,
-      theme: 'red',
+      theme: '#009688',
     },
   },
   // if there are other modules, please use object
@@ -41,11 +41,17 @@ const fetchPostSuccess = (state, action) => {
   });
   return Object.assign({}, state, { posts });
   */
+  const { data } = action.data;
+  const { postList, total } = data;
   return Object.assign({}, state, {
     posts: {
       ...state.posts,
       isFetching: false,
-      postList: action.data.postList,
+      postList,
+      pagination: {
+        ...state.posts.pagination,
+        total,
+      }
     },
   });
 };

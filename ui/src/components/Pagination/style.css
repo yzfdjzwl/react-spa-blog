@@ -1,0 +1,35 @@
+.p-item {
+  display: inline-block;
+  vertical-align: middle;
+	padding: 0 15px;
+	height: 28px;
+	line-height: 28px;
+	background-color: #fff;
+	color: #333;
+	font-size: 12px;
+	border-radius: 2px 0 0 2px;
+	border-right: 1px solid #e2e2e2;
+}
+
+.p-item-disabled {
+	color: #d2d2d2;
+	cursor: not-allowed;
+}
+
+.p-middle {
+  display: inline-block;
+}
+
+.p-next {
+	border-right: none;
+}
+
+.pagination-wrapper {
+  text-align: center;
+}
+
+.pagination-inner {
+  display: inline-block;
+  margin: 10px auto;
+	border: 1px solid #e2e2e2;
+}
