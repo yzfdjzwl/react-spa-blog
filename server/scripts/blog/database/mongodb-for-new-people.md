@@ -129,33 +129,33 @@ db.stu.update({'name': 'yuzf'}, {$unset: {'grade': 200}});
 7. 获取单个文档: `db.users.findOne();`
 8. 使用常用的聚合命令`count, distinct, group`
     * 统计users表里有多少个文档: `db.users.count();`
-    * 去重: `db.users.distinct('uid');`, 将会返回一个数组，数组里包含的元素是去重了的`uid`。 
-    * 将结果分组: 
-```
-  db.calendars.group({
-    key: {uid: true},
-    initial: {total: 0},
-    reduce: function(items, prev) {
-      prev.total += 1;
-    }
-  });
+    * 去重: `db.users.distinct('uid');`, 将会返回一个数组，数组里包含的元素是去重了的`uid`。
+    * 将结果分组:
+      ```
+        db.calendars.group({
+          key: {uid: true},
+          initial: {total: 0},
+          reduce: function(items, prev) {
+            prev.total += 1;
+          }
+        });
 
-// 以uid进行分组。
-// 为每个已分组的结果提供一个基数。
-// 正在遍历的当前文档和聚集计数对象(我认为就是那个基数)。
+      // 以uid进行分组。
+      // 为每个已分组的结果提供一个基数。
+      // 正在遍历的当前文档和聚集计数对象(我认为就是那个基数)。
 
-// 最后的结果格式数据是:
-[
-  {
-    'uid': 'yuzf',
-    'total': 1,
-  },
-  {
-    'uid': 'test',
-    'total': 3,
-  }
-]
-```
+      // 最后的结果格式数据是:
+      [
+        {
+          'uid': 'yuzf',
+          'total': 1,
+        },
+        {
+          'uid': 'test',
+          'total': 3,
+        }
+      ]
+      ```
 9. 使用条件操作符
     * 执行大于和小于($lt,$gt,$lte,$gte)比较: `db.users.find({ departmentNumber: {$lt: 100} });`
     * 获取除uid为yuzf以外的其他文档: `db.calendars.find({'uid': {$ne: 'yuzf'}}).pretty();`

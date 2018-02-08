@@ -1,21 +1,10 @@
 ## A Simple React Blog
 
-一个个人博客，非博客系统。
 
 * [后端](server)
 * [前端](ui)
 
-## 功能统计
-
-### 组件
-
-* Nav
-* Banner
-* ListItem
-
 ## TODO
-
-### FED
 
 * 博客首页
 * Header
@@ -31,6 +20,17 @@
 * 分享
 * Markdown
 
-### BED
+### 其他
 
-* 数据库设计
+* Git服务器
+* CDN服务器
+* 一个第三方CDN平台
+* docker
+* node接入层的轮子
+* 多种框架实现该博客
+    * node接入层
+    * vue
+    * jQuery
+* 后端api的提供多种实现
+    * python
+    * java

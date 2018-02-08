@@ -1,4 +1,7 @@
 import CONST from '@common/const';
+import marked from 'marked';
+// import highlight from 'highlight.js';
+import hljs from 'highlight.js';
 
 const getPostBannerInfoLength = () => {
   return CONST.POST_BANNER_INFO.length;
@@ -32,10 +35,42 @@ const getRandomInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+// use marked: https://github.com/chjj/marked
+const md2HTML = (content) => {
+  const renderer = new marked.Renderer();
+  const toc = [];
+
+  renderer.heading = function(text, level, raw) {
+    const anchor = this.options.headerPrefix + raw.toLowerCase().replace(/[^\w\u4e00-\u9fa5]+/g, '-');
+    toc.push({
+      anchor,
+      level,
+      text,
+    });
+    return `<h${level} id=${anchor}>${text}</h${level}>\n`;
+  };
+
+  marked.setOptions({
+    highlight: code => { return hljs.highlightAuto(code).value; },
+    renderer: renderer,
+    gfm: true,
+    tables: true,
+    breaks: true,
+    pedantic: true,
+    sanitize: true,
+    smartLists: true,
+    smartypants: true,
+    xhtml: true,
+  });
+
+  return marked(content);
+};
+
 export default {
   getPostBannerInfo,
   getBannerInfoByPath,
   getUrlLastSegment,
   getPostBannerInfoLength,
   getRandomInteger,
+  md2HTML,
 };

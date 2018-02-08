@@ -1,0 +1,9 @@
+body {
+}
+
+.post-page {
+  width: 750px;
+  margin: 20px auto;
+  padding: 15px;
+  background: rgba(221, 221, 221, 0.10)
+}

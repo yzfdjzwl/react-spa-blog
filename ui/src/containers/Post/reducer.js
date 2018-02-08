@@ -4,6 +4,7 @@ const INIT_STATE = {
   isFetching: true,
   fetchFailed: false,
   post: {
+    content: '',
   },
 };
 
