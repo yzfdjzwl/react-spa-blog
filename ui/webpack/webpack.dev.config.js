@@ -4,11 +4,12 @@ const relativeRootPath = '..';
 module.exports = {
   entry: path.join(__dirname, relativeRootPath, 'src/index.js'),
   output: {
-    path: path.join(__dirname, relativeRootPath, './dist'),
+    path: path.join(__dirname, relativeRootPath, './dist/assets'),
     filename: 'bundle.js',
-    publicPath: '/dist',
-    // publicPath: path.join(__dirname, relativeRootPath, './dist'),
+    // 所有的资源都以publicPath为基础路径访问
+    publicPath: '/dist/assets/',
   },
+  // for dev
   devtool: 'inline-source-map',
   resolve: {
     alias: {
@@ -40,6 +41,7 @@ module.exports = {
       },
     ]
   },
+  // for dev
   devServer: {
     /*
      * 默认webpack dev server是从项目的根目录提供服务，如果要从不同的目录提供服务，可以通过contentBase来配置
@@ -58,8 +60,5 @@ module.exports = {
 				changeOrigin: true,
 			}
 		},
-  },
-  node: {
-    fs: 'empty',
   },
 };

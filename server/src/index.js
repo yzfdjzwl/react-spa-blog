@@ -16,6 +16,9 @@ app.use(bodyParser.urlencoded({ // for application/x-www-form-urlencoded
 }));
 app.use(post);
 
+// app.use(express.static(`${__dirname}/../../ui/dist`));
+app.use(express.static(`${__dirname}/../public`));
+
 app.listen(3000, () => {
   console.log('listening 3000...');
 });
