@@ -42,7 +42,7 @@ class Post extends Component {
         <Nav />
         <Banner info={info} />
         <div className="post-page">
-          <div dangerouslySetInnerHTML={{__html: html }} />
+          <div className="markdown-body" dangerouslySetInnerHTML={{__html: html }} />
         </div>
       </div>
     );
