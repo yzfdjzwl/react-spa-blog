@@ -34,7 +34,7 @@ class Home extends Component {
       let pageNumber = parseInt(util.getUrlLastSegment(url));
       this.props.homeActions.fetchPostList({
         current: pageNumber,
-        pageSize
+        pageSize,
       });
       return;
     }

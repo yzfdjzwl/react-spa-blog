@@ -16,7 +16,7 @@ const INIT_STATE = {
   // if there are other modules, please use object
 };
 
-const fetchPostStart = (state, action) => {
+const fetchPostsStart = (state, action) => {
   return Object.assign({}, state, {
     posts: {
       ...state.posts,
@@ -25,22 +25,7 @@ const fetchPostStart = (state, action) => {
   });
 };
 
-const fetchPostSuccess = (state, action) => {
-  /*
-  state.posts.isFetching = false;
-  state.posts.postList = [{title: 'haha', content:'mem', date: 'meme'}];
-  console.log(state);
-  return state;
-  */
-
-  /*
-  let { posts } = state;
-  posts = Object.assign({}, posts, {
-    isFetching: false,
-    postList: action.data.postList,
-  });
-  return Object.assign({}, state, { posts });
-  */
+const fetchPostsSuccess = (state, action) => {
   const { data } = action.data;
   const { postList, total } = data;
   return Object.assign({}, state, {
@@ -56,7 +41,7 @@ const fetchPostSuccess = (state, action) => {
   });
 };
 
-const fetchPosstError = (state, action) => {
+const fetchPostsError = (state, action) => {
   return Object.assign({}, state, {
     posts: {
       ...state.posts,
@@ -81,9 +66,9 @@ const updatePaginationCurrent = (state, action) => {
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
     case at.FETCH_POSTS_START:
-      return fetchPostStart(state, action);
+      return fetchPostsStart(state, action);
     case at.FETCH_POSTS_SUCCESS:
-      return fetchPostSuccess(state, action);
+      return fetchPostsSuccess(state, action);
     case at.FETCH_POSTS_ERROR:
       return fetchPostsError(state, action);
     case at.UPDATE_PAGINATION_CURRENT:

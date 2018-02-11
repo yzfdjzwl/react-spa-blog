@@ -30,6 +30,7 @@
     "markdown-it": "^8.4.0",
     "marked": "^0.3.12",
     "normalize.css": "^7.0.0",
+    "nprogress": "^0.2.0",
     "pygmentize-bundled": "^2.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

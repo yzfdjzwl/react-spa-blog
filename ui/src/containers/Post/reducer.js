@@ -24,6 +24,8 @@ export default (state = INIT_STATE, action) => {
         isFetching: false,
         fetchFailed: true,
       });
+    case at.CLEAR_POST:
+      return INIT_STATE;
     default:
       return state;
   }

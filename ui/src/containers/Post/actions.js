@@ -19,3 +19,9 @@ export const fetchPostByUrl = ({ url }, cb) => dispatch => {
       console.log(error);
     });
 };
+
+export const clearPost = () => dispatch => {
+  dispatch({
+    type: at.CLEAR_POST,
+  });
+};

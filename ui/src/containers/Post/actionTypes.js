@@ -1,3 +1,5 @@
 export const FETCH_POST_START = 'FETCH_POST_START';
 export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
 export const FETCH_POST_ERROR = 'FETCH_POST_ERROR';
+
+export const CLEAR_POST = 'CLEAR_POST';

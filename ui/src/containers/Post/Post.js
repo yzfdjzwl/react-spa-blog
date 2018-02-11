@@ -16,6 +16,10 @@ const mapDispatchToProps = dispatch => ({
 class Post extends Component {
   constructor(props) {
     super(props);
+    const length = util.getPostBannerInfoLength();
+    const index = util.getRandomInteger(length);
+    const info = util.getPostBannerInfo(index);
+    this.state = { info };
   }
 
   componentWillMount() {
@@ -26,13 +30,14 @@ class Post extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.props.postActions.clearPost();
+  }
+
   render() {
-    const length = util.getPostBannerInfoLength();
-    const index = util.getRandomInteger(length);
     const { post } = this.props.post;
     const { title = '' } = post;
-
-    let info = util.getPostBannerInfo(index);
+    let { info } = this.state;
     info = Object.assign({}, info, { title });
 
     const html = util.md2HTML(post.content);

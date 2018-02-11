@@ -19,14 +19,18 @@
 * 百度统计
 * 分享
 * Markdown
+* 最新文章
 
 ### 其他
 
+* 发布到线上的脚本
 * Git服务器
 * CDN服务器
 * 一个第三方CDN平台
-* docker
+  * 自己上传图片，返回地址，用于markdown
 * node接入层的轮子
+* markdown轮子
+* docker
 * 多种框架实现该博客
     * node接入层
     * vue

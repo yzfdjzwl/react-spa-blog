@@ -11,7 +11,7 @@ body {
 /* 隐藏toc部分 */
 .markdown-body > h1 + p,
 .markdown-body > h1 + p + ul,
-.markdown-body > h1 + p + ul + p { 
+.markdown-body > h1 + p + ul + p {
   display: none;
 }
 

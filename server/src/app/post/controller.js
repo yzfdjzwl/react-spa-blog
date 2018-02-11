@@ -15,8 +15,6 @@ const getAllPostsByPager = async (request, reply) => {
   postList = markdownToPlainText(postList);
   postList = postIntercept(postList);
 
-  console.log(postList);
-
   reply.send({
     code: 0,
     data: {
@@ -33,6 +31,7 @@ const getPostByUrl = async (request, reply) => {
   const { url } = params;
 
   const post = await PostModel.findOne({ url });
+
   reply.send({
     code: 0,
     data: {
