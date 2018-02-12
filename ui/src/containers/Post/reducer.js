@@ -5,6 +5,11 @@ const INIT_STATE = {
   fetchFailed: false,
   post: {
     content: '',
+    sort: '',
+    title: '',
+    _id: '',
+    date: '',
+    comments: [],
   },
 };
 

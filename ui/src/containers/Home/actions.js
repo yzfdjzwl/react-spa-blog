@@ -15,6 +15,7 @@ export const fetchPostList = ({ current, pageSize }, cb) => dispatch => {
   .post('/api/post/pager', { current, pageSize })
   .then(res => {
     const { data } = res;
+    // notice: res.data.data is the real data
     dispatch({
       type: at.FETCH_POSTS_SUCCESS,
       data,

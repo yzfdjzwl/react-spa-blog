@@ -13,6 +13,16 @@ const postSchema = new Schema({
   // xx-xx-xx, 用于url
   url: String,
   // 是否置顶
+  // 评论
+  comments: [ 
+    {
+      name: String,
+      email: String,
+      url: String,
+      message: String,
+      date: Date,
+    },
+  ],
 });
 
 

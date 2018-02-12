@@ -48,3 +48,11 @@
 * publicPath是`link, script`会引用的路径，也就是说如果你设置了`publicPath: '/dist/'`, 那么`link 以及 script img`引用的标签将会以`publicPath`为基准。
 * 而如果使用`webpack-dev-server`的时候，也要指定`publicPath`, 就是上面的那个原因，但是你随便指定就ok了，因为文件是存在内存里的。但是在`index.html`里面引用bundle.js的路径就得和`publicPath`是一致的。
 * `publicPath`, 务必一定带上'/', 即'/dist/', 而非`dist/`；同样，index.html里面引用的也是。
+
+## comment TODO
+
+* 策略模式
+* 前端验证
+* 后端验证
+* 多少时间内超过多少次就会输入验证码
+* 多少时间内超过多少次后端给出限制

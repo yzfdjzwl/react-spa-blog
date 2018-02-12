@@ -20,6 +20,34 @@ export const fetchPostByUrl = ({ url }, cb) => dispatch => {
     });
 };
 
+export const submitComment = ({
+  message,
+  name,
+  email,
+  url,
+  _id,
+  date,
+}, cb) => dispatch => {
+  axios
+    .post('/api/post/comment', { message, name, email, url, _id, date })
+    .then(res => {
+      if (res.data.code === 0) {
+        dispatch({
+          type: at.SUBMIT_COMMENT,
+          data: res.data,
+        });
+        // 重新拉曲
+        cb && cb();
+      } else {
+        // 弹窗提示错误
+        // 可以dispatch来做
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
 export const clearPost = () => dispatch => {
   dispatch({
     type: at.CLEAR_POST,
