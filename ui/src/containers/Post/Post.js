@@ -46,6 +46,7 @@ class Post extends Component {
     const { pathname } = this.props.location;
     const _url = util.getUrlLastSegment(pathname);
 
+    return;
     this.props.postActions.submitComment({
       message,
       name,

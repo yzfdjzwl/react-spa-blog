@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Validator from '@common/Validator';
 import './style.css';
 
 class Comment extends Component {
@@ -40,7 +41,46 @@ class Comment extends Component {
   }
 
   handlePostedClick() {
-		// TODO: 验证
+    const validator = new Validator();
+    validator.add(this.state.message, [
+      {
+        strategy: 'isNoEmpty',
+        errorMsg: '留言不能为空',
+      },
+    ]);
+    validator.add(this.state.name, [
+      {
+        strategy: 'isNoEmpty',
+        errorMsg: '姓名不能为空',
+      },
+    ]);
+    validator.add(this.state.email, [
+      {
+        strategy: 'isNoEmpty',
+        errorMsg: '邮箱不能为空',
+      },
+      {
+        strategy: 'isEmail',
+        errorMsg: '请输入正确的邮箱格式',
+      },
+    ]);
+
+    if (this.state.url) {
+      validator.add(this.state.url, [
+        {
+          strategy: 'isUrl',
+          errorMsg: '请输入正确的地址',
+        },
+      ]);
+    }
+    const errorMsg = validator.start();
+    if (errorMsg) {
+      // TODO: 全局弹窗
+      return;
+    }
+
+    return;
+		// TODO: 前端XSS过滤
     this.props.onSubmit(this.state);
   }
 
